@@ -1,0 +1,29 @@
+# Fast, offline client demonstration. Use examples/demo.yaml for the full comparison.
+evaluation:
+  name: "Live demonstration: coding-agent harness evaluation"
+  benchmark: ../benchmarks/py-customers
+  baseline: ../harnesses/baseline
+  candidate: ../harnesses/candidate
+  runs: 1
+  order: interleaved
+  seed: 20260915
+  output_dir: ../runs
+
+agent:
+  adapter: simulated
+  model: claude-sonnet-4-5
+
+judge:
+  enabled: true
+  provider: heuristic
+  model: heuristic-demo-1
+  prompt_version: v1
+  self_consistency: 1
+
+decision:
+  min_effect: 0.20
+  cost_tolerance: 0.15
+  duration_tolerance: 0.25
+  reliability_tolerance: 0.15
+  quality_tolerance: 0.15
+  bootstrap_samples: 1000
